@@ -17,34 +17,26 @@
   </form>
 </template>
 
-<script>
-import { mapActions } from 'vuex';
+<script setup>
+import { ref } from 'vue';
+import { useActions } from '../utils/routerHooks';
 
-export default {
-  name: 'AddTask',
-  methods: {
-    onSubmit(e) {
-      e.preventDefault();
+const text = ref('');
+const date = ref('');
+const reminder = ref(false);
+const { addTodo } = useActions(['addTodo']);
 
-      if (!this.text) alert('Please enter the task name');
-      const id = Math.floor(Math.random() * 100000);
+function onSubmit(e) {
+  e.preventDefault();
 
-      this.addTodo({ id, text: this.text, date: this.date, reminder: this.reminder });
+  if (!text.value) alert('Please enter the task name');
 
-      this.text = '';
-      this.date = '';
-      this.reminder = false;
-    },
-    ...mapActions(['addTodo']),
-  },
-  data() {
-    return {
-      text: '',
-      date: '',
-      reminder: false,
-    };
-  },
-};
+  addTodo({ text: text.value, date: date.value, reminder: reminder.value });
+
+  text.value = '';
+  date.value = '';
+  reminder.value = false;
+}
 </script>
 
 <style scoped>

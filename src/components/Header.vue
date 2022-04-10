@@ -9,21 +9,16 @@
   </header>
 </template>
 
-<script>
-import { mapGetters, mapActions } from 'vuex';
+<script setup>
+import { useActions, useGetters } from '../utils/routerHooks';
 import Button from './Button.vue';
 
-export default {
-  name: 'Header',
-  props: { text: String },
-  components: {
-    Button,
-  },
-  methods: {
-    ...mapActions(['toggleAddTask']),
-  },
-  computed: mapGetters(['toggleAddTaskStatus']),
-};
+defineProps({
+  text: String,
+});
+
+const { toggleAddTask } = useActions(['toggleAddTask']);
+const { toggleAddTaskStatus } = useGetters(['toggleAddTaskStatus']);
 </script>
 
 <style scope>

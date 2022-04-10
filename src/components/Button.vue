@@ -2,14 +2,11 @@
   <button @click="$emit('on-click')" :style="{ backgroundColor: background }">{{ text }}</button>
 </template>
 
-<script>
-export default {
-  name: 'Button',
-  props: {
-    text: String,
-    background: String,
-  },
-};
+<script setup>
+defineProps({
+  text: String,
+  background: String,
+});
 </script>
 
 <style scoped>

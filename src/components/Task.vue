@@ -1,28 +1,17 @@
 <template>
-  <div @dblclick="onReminder" :class="[task.reminder ? 'reminder' : '', 'task']">
+  <div @dblclick="$emit('remind-task', task.id)" :class="[task.reminder ? 'reminder' : '', 'task']">
     <div class="description">
       <h3>{{ task.text }}</h3>
       <p>{{ task.date }}</p>
     </div>
-    <div @click="onDelete" class="status"><unicon name="check" fill="limegreen"></unicon></div>
+    <div @click="$emit('delete-task', task.id)" class="status"><unicon name="check" fill="limegreen"></unicon></div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Task',
-  props: {
-    task: Object,
-  },
-  methods: {
-    onDelete(id) {
-      this.$emit('delete-task');
-    },
-    onReminder(id) {
-      this.$emit('remind-task');
-    },
-  },
-};
+<script setup>
+defineProps({
+  task: Object,
+});
 </script>
 
 <style>

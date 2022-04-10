@@ -10,6 +10,7 @@ export default defineConfig({
     dedupe: ['vue'],
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      Utils: fileURLToPath(new URL('./src/utils', import.meta.url)),
     },
   },
 });

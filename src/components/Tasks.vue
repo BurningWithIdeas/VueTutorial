@@ -10,19 +10,10 @@
   </div>
 </template>
 
-<script>
-import { mapGetters, mapActions } from 'vuex';
+<script setup>
+import { useActions, useGetters } from '../utils/routerHooks';
 import Task from './Task.vue';
 
-export default {
-  name: 'Tasks',
-  props: {
-    tasks: Array,
-  },
-  components: { Task },
-  methods: {
-    ...mapActions(['deleteTodo', 'toggleTodoReminder']),
-  },
-  computed: mapGetters(['allTodos']),
-};
+const { deleteTodo, toggleTodoReminder } = useActions(['deleteTodo', 'toggleTodoReminder']);
+const { allTodos } = useGetters(['allTodos']);
 </script>

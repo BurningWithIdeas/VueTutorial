@@ -9,9 +9,3 @@
     <router-link to="/">Home Page</router-link>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'About',
-};
-</script>

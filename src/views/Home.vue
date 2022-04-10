@@ -7,27 +7,18 @@
   </div>
 </template>
 
-<script>
-import { mapGetters, mapActions } from 'vuex';
+<script setup>
+import { onMounted } from 'vue';
+import { useActions, useGetters } from 'Utils/routerHooks';
 import Header from '../components/Header.vue';
 import Tasks from '../components/Tasks.vue';
 import AddTask from '../components/AddTask.vue';
 import Footer from '../components/Footer.vue';
 
-export default {
-  name: 'Home',
-  components: {
-    Header,
-    Tasks,
-    AddTask,
-    Footer,
-  },
-  methods: {
-    ...mapActions(['fetchTodos']),
-  },
-  computed: mapGetters(['toggleAddTaskStatus']),
-  created() {
-    this.fetchTodos();
-  },
-};
+const { toggleAddTaskStatus } = useGetters(['toggleAddTaskStatus']);
+const { fetchTodos } = useActions(['fetchTodos']);
+
+onMounted(() => {
+  fetchTodos();
+});
 </script>
