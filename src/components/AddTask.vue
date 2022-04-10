@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'AddTask',
   methods: {
@@ -27,12 +29,13 @@ export default {
       if (!this.text) alert('Please enter the task name');
       const id = Math.floor(Math.random() * 100000);
 
-      this.$emit('add-task', { id, text: this.text, date: this.date, reminder: this.reminder });
+      this.addTodo({ id, text: this.text, date: this.date, reminder: this.reminder });
 
       this.text = '';
       this.date = '';
       this.reminder = false;
     },
+    ...mapActions(['addTodo']),
   },
   data() {
     return {

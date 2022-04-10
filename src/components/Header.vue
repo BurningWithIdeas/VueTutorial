@@ -2,22 +2,27 @@
   <header>
     <h2>{{ text }}</h2>
     <Button
-      @on-click="$emit('toggle-add-task')"
-      :text="showAddTask ? 'Close' : 'Add Task'"
-      :background="showAddTask ? 'grey' : 'green'"
+      @on-click="toggleAddTask"
+      :text="toggleAddTaskStatus ? 'Close' : 'Add Task'"
+      :background="toggleAddTaskStatus ? 'grey' : 'green'"
     />
   </header>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import Button from './Button.vue';
 
 export default {
   name: 'Header',
-  props: { text: String, showAddTask: Boolean },
+  props: { text: String },
   components: {
     Button,
   },
+  methods: {
+    ...mapActions(['toggleAddTask']),
+  },
+  computed: mapGetters(['toggleAddTaskStatus']),
 };
 </script>
 

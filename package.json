@@ -9,10 +9,12 @@
     "backend": "json-server --watch db.json --port 8081"
   },
   "dependencies": {
+    "axios": "^0.21.4",
     "vue": "^3.2.31",
     "vue-route": "^1.5.1",
     "vue-router": "^4.0.13",
-    "vue-unicons": "^3.3.1"
+    "vue-unicons": "^3.3.1",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.2",
